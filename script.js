@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.items.forEach((_, index) => {
                 const dot = document.createElement('span');
                 dot.className = 'nav-dot';
-                dot.setAttribute('aria-label', `Go to image ${index + 1}`);
+                dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
                 if (index === 0) dot.classList.add('active');
                 dot.addEventListener('click', () => this.goTo(index));
                 this.nav.appendChild(dot);
@@ -71,9 +71,11 @@ document.addEventListener('DOMContentLoaded', function () {
             // Touch events for mobile
             let touchStartX = 0;
             let touchEndX = 0;
+            let touchStartTime = 0;
 
             this.track.addEventListener('touchstart', (e) => {
                 touchStartX = e.touches[0].clientX;
+                touchStartTime = Date.now();
                 this.isPaused = true;
             });
 
@@ -81,14 +83,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 touchEndX = e.touches[0].clientX;
             });
 
-            this.track.addEventListener('touchend', () => {
+            this.track.addEventListener('touchend', (e) => {
                 const deltaX = touchEndX - touchStartX;
-                if (deltaX > 50) {
-                    this.prev();
-                } else if (deltaX < -50) {
-                    this.next();
+                const touchDuration = Date.now() - touchStartTime;
+
+                // Only swipe if touch duration is short and movement is significant
+                if (touchDuration < 500 && Math.abs(deltaX) > 50) {
+                    if (deltaX > 0) {
+                        this.prev();
+                    } else {
+                        this.next();
+                    }
                 }
+
                 this.isPaused = false;
+
+                // Prevent default behavior for videos
+                if (e.target.tagName === 'VIDEO') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
             });
 
             // Keyboard navigation
@@ -105,13 +119,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         startAutoSwipe() {
-            // Only auto-swipe if there are multiple images
             if (this.items.length > 1) {
                 this.interval = setInterval(() => {
                     if (!this.isPaused) {
                         this.next();
                     }
-                }, 3000); // Swipe every 3 seconds
+                }, 3000);
             }
         }
 
@@ -131,10 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         update() {
-            // Update track position
             this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
-
-            // Update active dot
             const dots = this.nav.querySelectorAll('.nav-dot');
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === this.currentIndex);
@@ -147,10 +157,9 @@ document.addEventListener('DOMContentLoaded', function () {
         (carousel) => new ImageCarousel(carousel)
     );
 
-    // Lightbox Functionality for Gallery
+    // Lightbox Functionality for Images
     document.querySelectorAll('.image-carousel .carousel-item img').forEach(img => {
         img.style.cursor = 'pointer';
-
         img.addEventListener('click', () => {
             const modal = document.createElement('div');
             modal.style.cssText = `
@@ -166,16 +175,44 @@ document.addEventListener('DOMContentLoaded', function () {
                 z-index: 2000;
                 cursor: zoom-out;
             `;
-
             modal.innerHTML = `
                 <img src="${img.src}" alt="${img.alt}" 
                      style="max-width: 90vw; max-height: 90vh; object-fit: contain;">
             `;
-
             modal.addEventListener('click', () => {
                 modal.remove();
             });
+            document.body.appendChild(modal);
+        });
+    });
 
+    // Prevent Video Fullscreen and Add Optional Lightbox
+    document.querySelectorAll('.image-carousel .carousel-item video').forEach(video => {
+        video.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // Optional: Open video in a lightbox
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 2000;
+                cursor: zoom-out;
+            `;
+            modal.innerHTML = `
+                <video src="${video.src}" controls
+                       style="max-width: 90vw; max-height: 90vh; object-fit: contain;">
+            `;
+            modal.addEventListener('click', () => {
+                modal.remove();
+            });
             document.body.appendChild(modal);
         });
     });
@@ -190,14 +227,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('scroll', () => {
         if (!isMobile) return;
-
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
         if (currentScroll <= 100) {
             navbar.classList.remove('navbar-hidden');
             return;
         }
-
         if (currentScroll > lastScrollTop && currentScroll > 100) {
             navbar.classList.add('navbar-hidden');
             document.querySelector('.nav-links').classList.remove('show');
@@ -205,7 +239,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (currentScroll < lastScrollTop) {
             navbar.classList.remove('navbar-hidden');
         }
-
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     });
 });
