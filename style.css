@@ -688,3 +688,20 @@ a, button {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: block;
 }
+
+.image-carousel .carousel-item video {
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: block;
+    cursor: pointer; /* Indicate videos are clickable for lightbox */
+}
+
+/* Optional: For non-interactive videos (use if you remove the video lightbox) */
+.image-carousel .carousel-item video.non-interactive {
+    pointer-events: none;
+    cursor: default;
+}
