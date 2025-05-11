@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demolition Experts</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="theme-color" content="#212529">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="logo">
+            <img src="Screenshot 2025-05-07 172721.png" alt="Logo" loading="lazy"/>
+            <span>Demolition Experts</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#gallery-section">Gallery</a></li>
+            <li><a href="#site-footer">Contact Us</a></li>
+            <li class="services-menu">
+                <a href="#">Services ▾</a>
+                <ul class="dropdown">
+                    <li><a href="#rcc-breaker">RCC Breaker</a></li>
+                    <li><a href="#rcc-wall-cutting">RCC Wall Cutting</a></li>
+                    <li><a href="#core-cutting">Core Cutting</a></li>
+                    <li><a href="#rebaring">Rebaring & Anchor Bolt Fixing</a></li>
+                    <li><a href="#slab-cutting">Slab Cutting</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Welcome to Demolition Experts</h1>
+        <p>Precision. Safety. Excellence in Demolition Services.</p>
+    </header>
+
+    <!-- About Owner -->
+    <section class="about-owner">
+        <h2>About the Owner</h2>
+        <p>Suresh Solanki, the founder of Demolition Experts, brings over 20 years of experience, known for safe, efficient, and precise work on every project.</p>
+    </section>
+
+    <!-- Experience -->
+    <section class="experience">
+        <h2>Our Experience</h2>
+        <p>We have successfully completed over 500 projects across residential, commercial, and industrial sectors, always focusing on safety and client satisfaction.</p>
+    </section>
+
+    <!-- Services Sections -->
+    <section class="services">
+        <h2>Our Services</h2>
+
+        <!-- RCC Breaker -->
+        <div id="rcc-breaker" class="service-section">
+            <div class="service-image-single">
+                <div class="image-carousel" id="rcc-breaker-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-item">
+                            <video src="rccv.mp4" alt="Core Cutting Image 2" autoplay loop muted></video>
+                        </div>
+                        <div class="carousel-item">
+                            <video src="rccvid2.mp4" alt="Core Cutting Image 2" autoplay loop muted></video>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="rcch.jpg" alt="RCC Breaker Image 1">
+                        </div>
+                    </div>
+                    <div class="carousel-nav"></div>
+                </div>
+            </div>
+            <div class="service-content">
+                <h3>RCC Breaker</h3>
+                <p>Our RCC breaker service specializes in breaking reinforced concrete structures with precision and safety. We use state-of-the-art equipment to ensure minimal vibration and dust, making the process clean and efficient.</p>
+                <button class="inquire-btn" onclick="openWhatsApp('RCC Breaker')">Inquire Now</button>
+            </div>
+        </div>
+
+        <!-- RCC Wall Cutting -->
+        <div id="rcc-wall-cutting" class="service-section">
+            <div class="service-image">
+                <div class="image-carousel" id="rcc-wall-cutting-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-item">
+                            <img src="WhatsApp Image 2025-05-08 at 23.23.26_c035a3c2.jpg" alt="RCC Breaker Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="WhatsApp Image 2025-05-10 at 15.21.09_85bfd20c.jpg" alt="RCC Wall Cutting Image 1">
+                        </div>
+                    </div>
+                    <div class="carousel-nav"></div>
+                </div>
+            </div>
+            <div class="service-content">
+                <h3>RCC Wall Cutting</h3>
+                <p>Precision wall cutting services for creating openings in concrete walls without compromising structural integrity. Ideal for doorways, windows, or expansion projects with clean, straight cuts every time.</p>
+                <button class="inquire-btn" onclick="openWhatsApp('RCC Wall Cutting')">Inquire Now</button>
+            </div>
+        </div>
+
+        <!-- Core Cutting -->
+        <div id="core-cutting" class="service-section">
+            <div class="service-image">
+                <div class="image-carousel" id="core-cutting-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-item">
+                            <img src="CC1.jpg" alt="Core Cutting Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="CC2.jpg" alt="Core Cutting Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <video src="CC.mp4" alt="Core Cutting Image 2" autoplay loop muted></video>
+                        </div>
+                    </div>
+                    <div class="carousel-nav"></div>
+                </div>
+            </div>
+            <div class="service-content">
+                <h3>Core Cutting</h3>
+                <p>Professional core cutting for creating precise circular openings in concrete slabs, walls, and floors. Perfect for HVAC installations, plumbing, electrical conduits, and other utility passages.</p>
+                <button class="inquire-btn" onclick="openWhatsApp('Core Cutting')">Inquire Now</button>
+            </div>
+        </div>
+
+        <!-- Rebaring & Anchor Bolt Fixing -->
+        <div id="rebaring" class="service-section">
+            <div class="service-image">
+                <div class="image-carousel" id="rebaring-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-item">
+                            <video src="rebaringv1.mp4" alt="Core Cutting Image 2" autoplay loop muted></video>
+                        </div>
+                        <div class="carousel-item">
+                            <video src="rebarafter.mp4" alt="Core Cutting Image 2" autoplay loop muted></video>
+                        </div>
+                        <div class="carousel-item">
+                            <video src="rebaro.mp4" alt="Core Cutting Image 2" autoplay loop muted></video>
+                        </div>
+                        <div class="carousel-item">
+                            <video src="rebar.mp4" alt="Core Cutting Image 2" autoplay loop muted></video>
+                        </div>
+                    </div>
+                    <div class="carousel-nav"></div>
+                </div>
+            </div>
+            <div class="service-content">
+                <h3>Rebaring & Anchor Bolt Fixing</h3>
+                <p>Expert reinforcement services including rebar installation and anchor bolt fixing to ensure structural strength and stability. We follow strict engineering specifications for all reinforcement work.</p>
+                <button class="inquire-btn" onclick="openWhatsApp('Rebaring & Anchor Bolt Fixing')">Inquire Now</button>
+            </div>
+        </div>
+
+        <!-- Slab Cutting -->
+        <div id="slab-cutting" class="service-section">
+            <div class="service-image">
+                <div class="image-carousel" id="slab-cutting-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-item">
+                            <img src="slab-cutting.jpg" alt="Slab Cutting Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="slab-cutting-2.jpg" alt="Slab Cutting Image 2">
+                        </div>
+                    </div>
+                    <div class="carousel-nav"></div>
+                </div>
+            </div>
+            <div class="service-content">
+                <h3>Slab Cutting</h3>
+                <p>Precision slab cutting services for partial or complete removal of concrete slabs. We handle everything from small residential projects to large commercial slab removals with minimal disruption.</p>
+                <button class="inquire-btn" onclick="openWhatsApp('Slab Cutting')">Inquire Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery-section">
+        <h2>Our Work Gallery</h2>
+
+        <!-- RCC Breaker Gallery -->
+        <div class="gallery-category">
+            <h3>RCC Breaker Projects</h3>
+            <div class="image-carousel" id="rcc-breaker-gallery">
+                <div class="carousel-track">
+                    <div class="carousel-item">
+                        <img src="rcc-breaker-2.jpg" alt="RCC Breaker Project 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="rcc-breaker-3.jpg" alt="RCC Breaker Project 3">
+                    </div>
+                </div>
+                <div class="carousel-nav"></div>
+            </div>
+        </div>
+
+        <!-- RCC Wall Cutting Gallery -->
+        <div class="gallery-category">
+            <h3>RCC Wall Cutting Projects</h3>
+            <div class="image-carousel" id="rcc-wall-cutting-gallery">
+                <div class="carousel-track">
+                    <div class="carousel-item">
+                        <img src="wall-cutting-1.jpg" alt="Wall Cutting Project 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="wall-cutting-2.jpg" alt="Wall Cutting Project 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="wall-cutting-3.jpg" alt="Wall Cutting Project 3">
+                    </div>
+                </div>
+                <div class="carousel-nav"></div>
+            </div>
+        </div>
+
+        <!-- Core Cutting Gallery -->
+        <div class="gallery-category">
+            <h3>Core Cutting Projects</h3>
+            <div class="image-carousel" id="core-cutting-gallery">
+                <div class="carousel-track">
+                    <div class="carousel-item">
+                        <img src="core-cutting-1.jpg" alt="Core Cutting Project 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="core-cutting-2.jpg" alt="Core Cutting Project 2">
+                    </div>
+                </div>
+                <div class="carousel-nav"></div>
+            </div>
+        </div>
+        <div class="gallery-category">
+            <h3>Rebaring Projects</h3>
+            <div class="image-carousel" id="rebaring">
+                <div class="carousel-track">
+                    <div class="carousel-item">
+                        <img src="wall-cutting-1.jpg" alt="Wall Cutting Project 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="wall-cutting-2.jpg" alt="Wall Cutting Project 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="wall-cutting-3.jpg" alt="Wall Cutting Project 3">
+                    </div>
+                </div>
+                <div class="carousel-nav"></div>
+            </div>
+        </div>
+        <div class="gallery-category">
+            <h3>Slab Cutting Projects</h3>
+            <div class="image-carousel" id="slab-cutting-gallery">
+                <div class="carousel-track">
+                    <div class="carousel-item">
+                        <img src="wall-cutting-1.jpg" alt="Wall Cutting Project 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="wall-cutting-2.jpg" alt="Wall Cutting Project 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="wall-cutting-3.jpg" alt="Wall Cutting Project 3">
+                    </div>
+                </div>
+                <div class="carousel-nav"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer" id="site-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="Screenshot 2025-05-07 172721.png" alt="Demolition Experts Logo">
+                <h3>Demolition Experts</h3>
+                <p>Precision Demolition Since 2007</p>
+            </div>
+        
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i>demolitionexperts77@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +91-9898905024<br>+91-9106163829</p>
+                <p><i class="fas fa-map-marker-alt"></i> Ahmedabad, India</p>
+            </div>
+        
+            <div class="footer-social">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="https://wa.me/919898905024" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="tel:+919898905024" aria-label="Call Us"><i class="fas fa-phone"></i></a>
+                    <a href="mailto:demolitionexperts77@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.google.com/maps?q=Your+Location+Address" target="_blank" aria-label="Location"><i class="fas fa-map-marker-alt"></i></a>
+                </div>
+            </div>
+        </div>
+      
+        <div class="footer-bottom">
+            <p>© 2025 Demolition Experts. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1257 @@
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #1c1f23;
+    color: white;
+    width: 100%;
+}
+
+.footer h3 {
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.footer-contact {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.contact-item,
+.contact-item-one,
+.contact-item-two,
+.contact-item-three {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.3s, color 0.3s;
+    min-height: 44px;
+    min-width: 44px;
+    flex: 0 1 auto; /* Changed from flex: 1 to prevent stretching */
+    min-width: 80px; /* Reduced minimum width */
+}
+
+.contact-item i,
+.contact-item-one i,
+.contact-item-two i,
+.contact-item-three i {
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+/* Hover colors */
+.contact-item:hover {
+    color: #25D366;
+    transform: scale(1.1);
+}
+
+.contact-item-one:hover {
+    color: #FF6B6B;
+    transform: scale(1.1);
+}
+
+.contact-item-two:hover {
+    color: #4285F4;
+    transform: scale(1.1);
+}
+
+.contact-item-three:hover {
+    color: green;
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 599px) {
+    /* Footer adjustments for mobile */
+    .footer-contact {
+        flex-direction: row; /* Changed from column to row */
+        justify-content: space-around; /* Evenly space items */
+        gap: 0.5rem; /* Reduced gap */
+        padding: 0 0.5rem;
+    }
+    
+    .contact-item,
+    .contact-item-one,
+    .contact-item-two,
+    .contact-item-three {
+        margin: 0;
+        min-width: auto;
+        font-size: 0.9rem; /* Slightly smaller text */
+    }
+    
+    .contact-item i,
+    .contact-item-one i,
+    .contact-item-two i,
+    .contact-item-three i {
+        font-size: 1.5rem; /* Slightly smaller icons */
+        margin-bottom: 0.3rem;
+    }
+    
+    /* Adjust spacing for very small screens */
+    @media (max-width: 400px) {
+        .footer-contact {
+            gap: 0.3rem;
+        }
+        
+        .contact-item,
+        .contact-item-one,
+        .contact-item-two,
+        .contact-item-three {
+            font-size: 0.8rem;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+// WhatsApp function remains identical
+function openWhatsApp(serviceName) {
+    const phoneNumber = "919106163829";
+    const message = `I need more details about ${serviceName} service. Please provide information.`;
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+}
+
+// Enhanced mobile menu with lightbox
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle (your existing code)
+    const navbar = document.querySelector('.navbar');
+    const menuToggle = document.createElement('button');
+    menuToggle.className = 'mobile-menu-toggle';
+    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    menuToggle.setAttribute('aria-label', 'Toggle menu');
+    navbar.insertBefore(menuToggle, navbar.querySelector('.nav-links'));
+    
+    menuToggle.addEventListener('click', function() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('show');
+        this.innerHTML = navLinks.classList.contains('show') ? 
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!navbar.contains(e.target)) {
+            document.querySelector('.nav-links').classList.remove('show');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+    });
+
+    // ===== NEW LIGHTBOX FUNCTIONALITY =====
+    document.querySelectorAll('.gallery-grid img').forEach(img => {
+        img.style.cursor = 'pointer'; // Add pointer cursor
+        
+        img.addEventListener('click', () => {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 2000;
+                cursor: zoom-out;
+            `;
+            
+            modal.innerHTML = `
+                <img src="${img.src}" alt="${img.alt}" 
+                     style="max-width: 90vw; max-height: 90vh; object-fit: contain;">
+                <button style="
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    background: #ffc107;
+                    border: none;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                ">&times;</button>
+            `;
+            
+            // Close modal
+            modal.querySelector('button').addEventListener('click', () => modal.remove());
+            modal.addEventListener('click', (e) => e.target === modal && modal.remove());
+            
+            document.body.appendChild(modal);
+        });
+    });
+});
+
+// Update your mobile menu script
+menuToggle.addEventListener('click', function() {
+    const isOpen = navLinks.classList.toggle('show');
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  2 final
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demolition Experts</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="theme-color" content="#212529">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="logo">
+            <img src="Screenshot 2025-05-07 172721.png" alt="Logo" loading="lazy"/>
+            <span>Demolition Experts</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#gallery-section">Gallery</a></li>
+            <li class="services-menu">
+                <a href="#">Services ▾</a>
+                <ul class="dropdown">
+                    <li><a href="#rcc-breaker">RCC Breaker</a></li>
+                    <li><a href="#rcc-wall-cutting">RCC Wall Cutting</a></li>
+                    <li><a href="#core-cutting">Core Cutting</a></li>
+                    <li><a href="#rebaring">Rebaring & Anchor Bolt Fixing</a></li>
+                    <li><a href="#slab-cutting">Slab Cutting</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Welcome to Demolition Experts</h1>
+        <p>Precision. Safety. Excellence in Demolition Services.</p>
+    </header>
+
+    <!-- About Owner -->
+    <section class="about-owner">
+        <h2>About the Owner</h2>
+        <p>Suresh Solanki, the founder of Demolition Experts, brings over 20 years of experience, known for safe, efficient,
+            and precise work on every project.</p>
+    </section>
+
+    <!-- Experience -->
+    <section class="experience">
+        <h2>Our Experience</h2>
+        <p>We have successfully completed over 500 projects across residential, commercial, and industrial sectors,
+            always focusing on safety and client satisfaction.</p>
+    </section>
+
+    <!-- Services Sections -->
+    <section class="services">
+        <h2>Our Services</h2>
+
+        <!-- RCC Breaker -->
+        <div id="rcc-breaker" class="service-section">
+            <div class="service-image-single">
+                <img src="WhatsApp Image 2025-05-08 at 23.23.26_c035a3c2.jpg" alt="RCC Breaker Service">
+            </div>
+            <div class="service-content">
+                <h3>RCC Breaker</h3>
+                <p>Our RCC breaker service specializes in breaking reinforced concrete structures with precision and
+                    safety. We use state-of-the-art equipment to ensure minimal vibration and dust, making the process
+                    clean and efficient.</p>
+                <!-- Example for RCC Breaker (do the same for other services) -->
+                <button class="inquire-btn" onclick="openWhatsApp('RCC Breaker')">Inquire Now</button>
+            </div>
+        </div>
+
+        <!-- RCC Wall Cutting -->
+        <div id="rcc-wall-cutting" class="service-section">
+            <div class="service-image">
+                <img src="WhatsApp Image 2025-05-10 at 15.21.09_85bfd20c.jpg" alt="RCC Wall Cutting Service">
+            </div>
+            <div class="service-content">
+                <h3>RCC Wall Cutting</h3>
+                <p>Precision wall cutting services for creating openings in concrete walls without compromising
+                    structural integrity. Ideal for doorways, windows, or expansion projects with clean, straight cuts
+                    every time.</p>
+                <button class="inquire-btn" onclick="openWhatsApp('RCC Wall Cutting')">Inquire Now</button>
+            </div>
+        </div>
+
+        <!-- Core Cutting -->
+        <div id="core-cutting" class="service-section">
+            <div class="service-image">
+                <img src="core-cutting.jpg" alt="Core Cutting Service">
+            </div>
+            <div class="service-content">
+                <h3>Core Cutting</h3>
+                <p>Professional core cutting for creating precise circular openings in concrete slabs, walls, and
+                    floors. Perfect for HVAC installations, plumbing, electrical conduits, and other utility passages.
+                </p>
+                <button class="inquire-btn" onclick="openWhatsApp('Core Cutting')">Inquire Now</button>
+            </div>
+        </div>
+
+        <!-- Rebaring & Anchor Bolt Fixing -->
+        <div id="rebaring" class="service-section">
+            <div class="service-image">
+                <img src="rebaring.jpg" alt="Rebaring Service">
+            </div>
+            <div class="service-content">
+                <h3>Rebaring & Anchor Bolt Fixing</h3>
+                <p>Expert reinforcement services including rebar installation and anchor bolt fixing to ensure
+                    structural strength and stability. We follow strict engineering specifications for all reinforcement
+                    work.</p>
+                <button class="inquire-btn" onclick="openWhatsApp('Rebaring & Anchor Bolt Fixing')">Inquire Now</button>
+            </div>
+        </div>
+
+        <!-- Slab Cutting -->
+        <div id="slab-cutting" class="service-section">
+            <div class="service-image">
+                <img src="slab-cutting.jpg" alt="Slab Cutting Service">
+            </div>
+            <div class="service-content">
+                <h3>Slab Cutting</h3>
+                <p>Precision slab cutting services for partial or complete removal of concrete slabs. We handle
+                    everything from small residential projects to large commercial slab removals with minimal
+                    disruption.</p>
+                <button class="inquire-btn" onclick="openWhatsApp('Slab Cutting')">Inquire Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery-section">
+        <h2>Our Work Gallery</h2>
+
+        <!-- RCC Breaker Gallery -->
+        <div class="gallery-category">
+            <h3>RCC Breaker Projects</h3>
+            <div class="gallery-grid">
+                <img src="rccb.webp" alt="RCC Breaker Project 1">
+                <img src="rcc-breaker-2.jpg" alt="RCC Breaker Project 2">
+                <img src="rcc-breaker-3.jpg" alt="RCC Breaker Project 3">
+                <!-- Add more images as needed -->
+            </div>
+        </div>
+
+        <!-- RCC Wall Cutting Gallery -->
+        <div class="gallery-category">
+            <h3>RCC Wall Cutting Projects</h3>
+            <div class="gallery-grid">
+                <img src="wall-cutting-1.jpg" alt="Wall Cutting Project 1">
+                <img src="wall-cutting-2.jpg" alt="Wall Cutting Project 2">
+                <img src="wall-cutting-3.jpg" alt="Wall Cutting Project 3">
+            </div>
+        </div>
+
+        <!-- Core Cutting Gallery -->
+        <div class="gallery-category">
+            <h3>Core Cutting Projects</h3>
+            <div class="gallery-grid">
+                <img src="core-cutting-1.jpg" alt="Core Cutting Project 1">
+                <img src="core-cutting-2.jpg" alt="Core Cutting Project 2">
+            </div>
+        </div>
+
+        <!-- Add other service galleries similarly -->
+    </section>
+    <!-- Footer -->
+    <!-- Footer -->
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="Screenshot 2025-05-07 172721.png" alt="Demolition Experts Logo">
+            <h3>Demolition Experts</h3>
+            <p>Precision Demolition Since 2003</p>
+        </div>
+    
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p><i class="fas fa-envelope"></i> youremail@example.com</p>
+            <p><i class="fas fa-phone"></i> +91-9876543210</p>
+            <p><i class="fas fa-map-marker-alt"></i> Your City, India</p>
+        </div>
+    
+        <div class="footer-social">
+            <h4>Connect</h4>
+            <div class="social-icons">
+                <a href="https://wa.me/919876543210" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="tel:+919876543210" aria-label="Call Us"><i class="fas fa-phone"></i></a>
+                <a href="mailto:youremail@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.google.com/maps?q=Your+Location+Address" target="_blank" aria-label="Location"><i class="fas fa-map-marker-alt"></i></a>
+            </div>
+        </div>
+    </div>
+  
+    <div class="footer-bottom">
+        <p>© 2025 Demolition Experts. All rights reserved.</p>
+    </div>
+</footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Navbar */
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    background-color: #212529;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    flex-wrap: wrap; /* Allows items to wrap if needed */
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+}
+
+nav .logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.logo span {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1rem; /* Reduced gap for mobile */
+    margin: 0;
+    padding: 0;
+    flex-wrap: nowrap; /* Prevent wrapping of links */
+    overflow-x: auto; /* Allows horizontal scrolling if needed */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.nav-links li {
+    white-space: nowrap; /* Prevents text wrapping */
+}
+
+nav .nav-links a {
+    color: white;
+    padding: 0.75rem 0.5rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+nav .dropdown {
+    position: absolute;
+    top: 100%;
+    left: auto;
+    right: 0;
+    background-color: #343a40;
+    padding: 0.75rem 0;
+    min-width: 220px;
+    border-radius: 6px;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+nav .dropdown li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: white !important;
+    transition: all 0.3s ease;
+}
+
+nav .dropdown li a:hover {
+    background-color: #ffc107;
+    color: #212529 !important;
+    padding-left: 1.2rem;
+}
+
+nav .services-menu:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Hero Section */
+.hero {
+    background: url('hero-image.jpg') center/cover no-repeat;
+    color: white;
+    text-align: center;
+    padding: 4rem 1rem;
+    background-color: #333;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+}
+
+/* Sections */
+section {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.about-owner, .experience {
+    background-color: #fff;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.services h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Service Sections */
+.service-section {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    scroll-margin-top: 80px;
+    padding-top: 30px;
+    margin-top: -30px;
+    transition: all 0.3s ease;
+}
+
+/* Replace the existing .service-image and .service-image-single styles with these: */
+.service-image,
+.service-image-single {
+    width: 90%;
+    max-width: 500px;
+    margin: 1rem auto;
+    display: block;
+    border-radius: 8px;
+    background: #f5f5f5;
+    padding: 10px; /* Added padding */
+}
+
+.service-image img,
+.service-image-single img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px; /* Slightly smaller than container */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+
+.service-image img:hover {
+    transform: scale(1.05);
+}
+
+.service-content {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.service-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.service-content p {
+    margin-bottom: 1.5rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+.inquire-btn {
+    align-self: flex-start;
+    padding: 0.8rem 1.5rem;
+    background-color: #212529;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.inquire-btn:hover {
+    background-color: #ffc107;
+    color: #212529;
+    transform: translateY(-2px);
+}
+
+/* Gallery Section */
+.gallery {
+    background-color: #fff;
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.gallery h2 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.gallery-category {
+    margin-bottom: 3rem;
+}
+
+.gallery-category h3 {
+    font-size: 1.5rem;
+    color: #212529;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #ffc107;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 6px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Footer */
+/* Footer Styles */
+.site-footer {
+    background-color: #212529;
+    color: #eee;
+    padding: 40px 0 20px;
+    font-family: 'Segoe UI', sans-serif;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 30px;
+}
+
+.footer-logo {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+}
+
+.footer-logo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: contain;
+    background-color: #fff;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+.footer-logo h3 {
+    margin: 10px 0 5px;
+    font-size: 24px;
+    color: #ffc107;
+    font-weight: 600;
+}
+
+.footer-logo p {
+    color: #aaa;
+    font-size: 15px;
+}
+
+.footer-contact {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-contact h4 {
+    color: #ffc107;
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.footer-contact p {
+    margin: 12px 0;
+    color: #ddd;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+.footer-contact i {
+    width: 24px;
+    text-align: center;
+    color: #ffc107;
+}
+
+.footer-social {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-social h4 {
+    color: #ffc107;
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: #343a40;
+    border-radius: 50%;
+    color: #ffc107;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: #ffc107;
+    color: #212529;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #343a40;
+    color: #aaa;
+    font-size: 14px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .footer-logo, 
+    .footer-contact, 
+    .footer-social {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .footer-contact p {
+        justify-content: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .footer-logo, 
+    .footer-contact, 
+    .footer-social {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-social {
+        margin-top: 20px;
+    }
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .services-menu .dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        padding-left: 1rem;
+    }
+    
+    .services-menu:hover .dropdown,
+    .services-menu:focus-within .dropdown {
+        display: block;
+    }
+}
+
+@media (max-width: 992px) {
+    nav.navbar {
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem 0;
+    }
+    
+    .nav-links.show {
+        display: flex;
+    }
+    
+    .services-menu .dropdown {
+        position: static;
+        width: 100%;
+    }
+    
+    nav .logo img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    nav .logo span {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 599px) {
+    /* Mobile menu */
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background-color: #343a40;
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+        padding-bottom: 20px;
+    }
+    
+    /* Hero adjustments */
+    .hero {
+        padding: 3rem 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    /* Service layout */
+    .service-section {
+        margin: 1rem 0;
+    }
+    
+    /* Gallery */
+    .gallery-grid img {
+        max-height: 180px;
+    }
+    
+    /* Footer */
+    .footer-contact {
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .contact-item,
+    .contact-item-one,
+    .contact-item-two,
+    .contact-item-three {
+        margin: 0.5rem 0;
+        min-width: auto;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 767px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .service-section {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .service-section {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 992px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Responsive adjustments for service images */
+
+
+@media (max-width: 480px) {
+    .service-image,
+    .service-image-single {
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+    }
+}
+
+#gallery-section,
+#rcc-breaker, 
+#rcc-wall-cutting, 
+#core-cutting, 
+#rebaring, 
+#slab-cutting {
+    scroll-margin-top: 80px;
+}
+
+.about-owner {
+    margin-top: 3rem;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a, button {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-links.show {
+    display: block;
+}
+
+.service-image,
+    .service-image-single {
+        width: 100%;
+        border-radius: 0;
+        margin: 1rem auto;
+    }
+    
+    .service-image img,
+    .service-image-single img {
+        max-height: none; /* Remove height restriction on mobile */
+    }
+
+/* For mobile devices - ensures full image is visible */
+@media (max-width: 768px) {
+    .service-image,
+    .service-image-single {
+        width: 100%;
+        border-radius: 0;
+        padding: 8px; /* Slightly less padding on mobile */
+        margin: 0.5rem auto 1.5rem; /* Better vertical spacing */
+    }
+    
+    .service-image img,
+    .service-image-single img {
+        max-height: none; /* Completely remove height restriction */
+    }
+}
+
+
+@media (min-width: 769px) {
+    .service-section {
+        flex-direction: row; /* Side-by-side layout */
+        align-items: center; /* Vertical centering */
+    }
+    
+    .service-image,
+    .service-image-single {
+        flex: 1;
+        margin-right: 2rem; /* Space between image and content */
+    }
+    
+    .service-content {
+        flex: 1;
+    }
+}
+
+/* Add to style.css */
+
+/* Smooth transition for navbar */
+.navbar {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Class to hide navbar by sliding it up */
+.navbar-hidden {
+    transform: translateY(-100%);
+}
+
+/* Ensure the navbar remains sticky and works well on mobile */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+    
+    /* Adjust nav-links for mobile */
+    .nav-links.show {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background-color: #343a40;
+        padding: 1rem;
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+    }
+}
+
+
+
+
+
+function openWhatsApp(serviceName) {
+    const phoneNumber = "919106163829";
+    const message = `I need more details about ${serviceName} service. Please provide information.`;
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const navbar = document.querySelector('.navbar');
+    const menuToggle = document.createElement('button');
+    menuToggle.className = 'mobile-menu-toggle';
+    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    menuToggle.setAttribute('aria-label', 'Toggle menu');
+    navbar.insertBefore(menuToggle, navbar.querySelector('.nav-links'));
+
+    menuToggle.addEventListener('click', function () {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('show');
+        this.innerHTML = navLinks.classList.contains('show') ?
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!navbar.contains(e.target)) {
+            document.querySelector('.nav-links').classList.remove('show');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+    });
+
+    // LIGHTBOX FUNCTIONALITY
+    document.querySelectorAll('.gallery-grid img').forEach(img => {
+        img.style.cursor = 'pointer';
+
+        img.addEventListener('click', () => {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 2000;
+                cursor: zoom-out;
+            `;
+
+            modal.innerHTML = `
+                <img src="${img.src}" alt="${img.alt}" 
+                     style="max-width: 90vw; max-height: 90vh; object-fit: contain;">
+            `;
+
+            modal.addEventListener('click', () => {
+                modal.remove();
+            });
+
+            document.body.appendChild(modal);
+        });
+    });
+
+    // Auto-hide navbar on scroll (mobile only)
+    let lastScrollTop = 0;
+    let isMobile = window.innerWidth <= 992;
+
+    // Update isMobile on window resize
+    window.addEventListener('resize', () => {
+        isMobile = window.innerWidth <= 992;
+    });
+
+    window.addEventListener('scroll', () => {
+        if (!isMobile) return; // Skip for non-mobile devices
+
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        // If near the top (less than 100px), always show navbar
+        if (currentScroll <= 100) {
+            navbar.classList.remove('navbar-hidden');
+            return;
+        }
+
+        // Hide navbar when scrolling down, show when scrolling up
+        if (currentScroll > lastScrollTop && currentScroll > 100) {
+            // Scrolling down and past 100px
+            navbar.classList.add('navbar-hidden');
+            // Close mobile menu if open
+            document.querySelector('.nav-links').classList.remove('show');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        } else if (currentScroll < lastScrollTop) {
+            // Scrolling up
+            navbar.classList.remove('navbar-hidden');
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Prevent negative scroll
+    });
+});
