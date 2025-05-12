@@ -6,11 +6,13 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Oswald', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white; /* Dark gray for industrial feel */
+    color: #ffffff; /* White text for contrast */
     line-height: 1.6;
     overflow-x: hidden;
+    background-image: url('https://www.transparenttextures.com/patterns/concrete-wall.png'); /* Subtle concrete texture */
+    background-attachment: fixed;
 }
 
 a {
@@ -29,12 +31,12 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 0.8rem 1.5rem;
-    background-color: #212529;
-    color: white;
+    background-color: #000000; /* Black navbar */
+    color: #ffffff;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     flex-wrap: wrap;
     transition: transform 0.3s ease-in-out;
 }
@@ -52,6 +54,7 @@ nav .logo img {
     width: 50px;
     height: 50px;
     margin-right: 15px;
+    /* filter: drop-shadow(0 0 5px #FFC107); Yellow glow for logo */
 }
 
 .logo span {
@@ -59,6 +62,8 @@ nav .logo img {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: 700;
+    color: #FFC107; /* Yellow for brand name */
 }
 
 .nav-links {
@@ -77,12 +82,17 @@ nav .logo img {
 }
 
 nav .nav-links a {
-    color: white;
+    color: #ffffff;
     padding: 0.75rem 0.5rem;
     display: flex;
     align-items: center;
     transition: all 0.3s ease;
     font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+nav .nav-links a:hover {
+    color: #FFC107; /* Yellow hover effect */
 }
 
 nav .dropdown {
@@ -90,7 +100,7 @@ nav .dropdown {
     top: 100%;
     left: auto;
     right: 0;
-    background-color: #343a40;
+    background-color: #1a1a1a; /* Darker gray dropdown */
     padding: 0.75rem 0;
     min-width: 220px;
     border-radius: 6px;
@@ -99,18 +109,19 @@ nav .dropdown {
     visibility: hidden;
     transform: translateY(10px);
     transition: all 0.3s ease;
+    border: 1px solid #8B0000; /* Brick red border */
 }
 
 nav .dropdown li a {
     display: block;
     padding: 0.5rem 1rem;
-    color: white !important;
+    color: #ffffff !important;
     transition: all 0.3s ease;
 }
 
 nav .dropdown li a:hover {
-    background-color: #ffc107;
-    color: #212529 !important;
+    background-color: #8B0000; /* Brick red hover */
+    color: #ffffff !important;
     padding-left: 1.2rem;
 }
 
@@ -123,20 +134,24 @@ nav .services-menu:hover .dropdown {
 
 /* Hero Section */
 .hero {
-    background: url('hero-image.jpg') center/cover no-repeat;
-    color: white;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('hero-image.jpg') center/cover no-repeat;
+    color: #ffffff;
     text-align: center;
     padding: 4rem 1rem;
-    background-color: #333;
+    background-color: #8B0000; /* Brick red fallback */
 }
 
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 .hero p {
     font-size: 1.2rem;
+    color: #FFC107; /* Yellow for emphasis */
 }
 
 /* Sections */
@@ -149,31 +164,35 @@ section {
 }
 
 .about-owner, .experience {
-    background-color: #fff;
+    background-color: #1a1a1a; /* Dark gray sections */
     margin-bottom: 2rem;
     border-radius: 8px;
     padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    border: 1px solid black; /* Brick red border */
 }
 
 .services h2 {
     text-align: center;
     margin-bottom: 2rem;
+    color: #FFC107; /* Yellow heading */
+    text-transform: uppercase;
 }
 
 /* Service Sections */
 .service-section {
     display: flex;
     flex-direction: column;
-    background-color: #fff;
+    background-color: #1a1a1a;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     margin-bottom: 2rem;
     scroll-margin-top: 80px;
     padding-top: 30px;
     margin-top: -30px;
     transition: all 0.3s ease;
+    border: 1px solid black;
 }
 
 .service-image,
@@ -182,21 +201,25 @@ section {
     max-width: 500px;
     margin: 1rem auto;
     border-radius: 8px;
-    background: #f5f5f5;
-    padding: 0; /* Removed padding to prevent cropping */
+    background: #333333;
+    padding: 0;
 }
 
-.image-carousel img {
+.image-carousel img,
+.image-carousel video {
     width: 100%;
     height: auto;
     display: block;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    object-fit: contain; /* Ensure full image is visible */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    object-fit: contain;
+    border: 2px solid black; /* Brick red border */
 }
 
-.image-carousel img:hover {
+.image-carousel img:hover,
+.image-carousel video:hover {
     transform: scale(1.05);
+    border-color: #FFC107; /* Yellow hover */
 }
 
 .service-content {
@@ -210,20 +233,21 @@ section {
 .service-content h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    color: #212529;
+    color: #FFC107;
+    text-transform: uppercase;
 }
 
 .service-content p {
     margin-bottom: 1.5rem;
-    color: #555;
+    color: #cccccc;
     line-height: 1.7;
 }
 
 .inquire-btn {
     align-self: flex-start;
     padding: 0.8rem 1.5rem;
-    background-color: #212529;
-    color: white;
+    background-color: #8B0000; /* Brick red button */
+    color: #ffffff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -231,11 +255,12 @@ section {
     transition: all 0.3s ease;
     min-height: 44px;
     min-width: 44px;
+    text-transform: uppercase;
 }
 
 .inquire-btn:hover {
-    background-color: #ffc107;
-    color: #212529;
+    background-color: #FFC107; /* Yellow hover */
+    color: #000000;
     transform: translateY(-2px);
 }
 
@@ -273,29 +298,32 @@ section {
 .carousel-nav .nav-dot {
     width: 10px;
     height: 10px;
-    background-color: #bbb;
+    background-color: #cccccc;
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .carousel-nav .nav-dot.active {
-    background-color: #212529;
+    background-color: #FFC107; /* Yellow active dot */
 }
 
 /* Gallery Section */
 .gallery {
-    background-color: #fff;
+    background-color: #1a1a1a;
     padding: 2rem 1rem;
     max-width: 1200px;
     margin: 0 auto 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    border: 1px solid black;
 }
 
 .gallery h2 {
     text-align: center;
     margin-bottom: 2.5rem;
+    color: #FFC107;
+    text-transform: uppercase;
 }
 
 .gallery-category {
@@ -304,28 +332,29 @@ section {
 
 .gallery-category h3 {
     font-size: 1.5rem;
-    color: #212529;
+    color: #FFC107;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #ffc107;
+    border-bottom: 2px solid black; /* Brick red underline */
 }
 
-.image-carousel .carousel-item img {
+.image-carousel .carousel-item img,
+.image-carousel .carousel-item video {
     width: 100%;
     height: auto;
     max-height: 220px;
-    object-fit: contain; /* Ensure full image is visible */
+    object-fit: contain;
     border-radius: 6px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     cursor: pointer;
 }
 
 /* Footer */
 .site-footer {
-    background-color: #212529;
-    color: #eee;
+    background-color: #000000;
+    color: #cccccc;
     padding: 40px 0 20px;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Oswald', sans-serif;
     width: 100%;
     margin-top: 30px;
 }
@@ -351,20 +380,21 @@ section {
     height: 80px;
     border-radius: 50%;
     object-fit: contain;
-    background-color: #fff;
+    background-color: white;
     padding: 5px;
     margin-bottom: 15px;
+    /* filter: drop-shadow(0 0 5px #FFC107); */
 }
 
 .footer-logo h3 {
     margin: 10px 0 5px;
     font-size: 24px;
-    color: #ffc107;
+    color: #FFC107;
     font-weight: 600;
 }
 
 .footer-logo p {
-    color: #aaa;
+    color: #999999;
     font-size: 15px;
 }
 
@@ -374,7 +404,7 @@ section {
 }
 
 .footer-contact h4 {
-    color: #ffc107;
+    color: #FFC107;
     font-size: 20px;
     margin-bottom: 15px;
     font-weight: 600;
@@ -382,7 +412,7 @@ section {
 
 .footer-contact p {
     margin: 12px 0;
-    color: #ddd;
+    color: #cccccc;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -392,7 +422,7 @@ section {
 .footer-contact i {
     width: 24px;
     text-align: center;
-    color: #ffc107;
+    color: yellow; /* Brick red icons */
 }
 
 .footer-social {
@@ -401,7 +431,7 @@ section {
 }
 
 .footer-social h4 {
-    color: #ffc107;
+    color: #FFC107;
     font-size: 20px;
     margin-bottom: 15px;
     font-weight: 600;
@@ -419,16 +449,16 @@ section {
     justify-content: center;
     width: 44px;
     height: 44px;
-    background-color: #343a40;
+    background-color: #333333;
     border-radius: 50%;
-    color: #ffc107;
+    color: yellow;
     font-size: 20px;
     transition: all 0.3s ease;
 }
 
 .social-icons a:hover {
-    background-color: #ffc107;
-    color: #212529;
+    background-color: #FFC107;
+    color: #000000;
     transform: translateY(-3px);
 }
 
@@ -436,8 +466,8 @@ section {
     text-align: center;
     margin-top: 40px;
     padding-top: 20px;
-    border-top: 1px solid #343a40;
-    color: #aaa;
+    border-top: 1px solid #333333;
+    color: #999999;
     font-size: 14px;
     max-width: 1200px;
     margin-left: auto;
@@ -474,7 +504,7 @@ section {
     display: none;
     background: none;
     border: none;
-    color: white;
+    color: #ffffff;
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem;
@@ -523,7 +553,7 @@ section {
         top: 70px;
         left: 0;
         right: 0;
-        background-color: #343a40;
+        background-color: #1a1a1a;
         padding: 1rem;
         max-height: calc(100vh - 70px);
         overflow-y: auto;
@@ -550,7 +580,7 @@ section {
         top: 70px;
         left: 0;
         right: 0;
-        background-color: #343a40;
+        background-color: #1a1a1a;
         max-height: calc(100vh - 70px);
         overflow-y: auto;
         padding-bottom: 20px;
@@ -573,7 +603,8 @@ section {
         margin: 1rem 0;
     }
     
-    .image-carousel .carousel-item img {
+    .image-carousel .carousel-item img,
+    .image-carousel .carousel-item video {
         max-height: 180px;
     }
 }
@@ -643,33 +674,33 @@ a, button {
 /* Adjust logo text for mobile */
 @media (max-width: 599px) {
     .logo span {
-        max-width: 200px; /* Increase max-width to allow more text */
-        font-size: 1.1rem; /* Reduce font size for better fit */
-        white-space: nowrap; /* Prevent wrapping */
+        max-width: 200px;
+        font-size: 1.1rem;
+        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
     nav .logo img {
-        width: 35px; /* Slightly reduce logo image size */
+        width: 35px;
         height: 35px;
-        margin-right: 10px; /* Reduce margin to save space */
+        margin-right: 10px;
     }
 
     .navbar {
-        padding: 0.6rem 0.8rem; /* Reduce navbar padding */
+        padding: 0.6rem 0.8rem;
     }
 
     .logo {
-        flex: 1; /* Allow logo to take available space */
-        max-width: calc(100% - 60px); /* Ensure logo fits within navbar, accounting for menu toggle */
+        flex: 1;
+        max-width: calc(100% - 60px);
     }
 }
 
 /* Ensure logo text is fully visible on slightly larger mobile screens */
 @media (min-width: 600px) and (max-width: 767px) {
     .logo span {
-        max-width: 250px; /* Allow more space for text */
+        max-width: 250px;
         font-size: 1.2rem;
     }
 
@@ -679,29 +710,3 @@ a, button {
     }
 }
 
-.image-carousel .carousel-item video {
-    width: 100%;
-    height: auto;
-    max-height: 220px; /* Match the max-height of images */
-    object-fit: contain; /* Ensure the video scales without cropping */
-    border-radius: 6px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: block;
-}
-
-.image-carousel .carousel-item video {
-    width: 100%;
-    height: auto;
-    max-height: 220px;
-    object-fit: contain;
-    border-radius: 6px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: block;
-    cursor: pointer; /* Indicate videos are clickable for lightbox */
-}
-
-/* Optional: For non-interactive videos (use if you remove the video lightbox) */
-.image-carousel .carousel-item video.non-interactive {
-    pointer-events: none;
-    cursor: default;
-}
