@@ -710,3 +710,12 @@ a, button {
     }
 }
 
+.navbar {
+    background-color: #212529; /* Dark charcoal gray */
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(33, 37, 41, 0.7), rgba(33, 37, 41, 0.7)), url('hero-image.jpg') center/cover no-repeat;
+    background-color: #6C757D; /* Warm gray fallback */
+}
