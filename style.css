@@ -7,10 +7,10 @@
 
 body {
     font-family: 'Oswald', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url(abstract-background-with-cracked-grunge-texture_1048-14420.avif); /* Dark gray for industrial feel */
     color: #ffffff; /* White text for contrast */
     line-height: 1.6;
-    overflow-x: hidden;
-    background-image: url(abstract-background-with-cracked-grunge-texture_1048-14420.avif);
+    overflow-x: hidden; /* Subtle concrete texture */
     background-attachment: fixed;
 }
 
