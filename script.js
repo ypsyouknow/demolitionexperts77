@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
             this.interval = null;
             this.isPaused = false;
 
-            // Hide navigation if only one item
             if (this.items.length <= 1) {
                 this.nav.style.display = 'none';
             }
@@ -47,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         init() {
-            // Create navigation dots
             this.items.forEach((_, index) => {
                 const dot = document.createElement('span');
                 dot.className = 'nav-dot';
@@ -57,10 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.nav.appendChild(dot);
             });
 
-            // Start auto-swiping
             this.startAutoSwipe();
 
-            // Pause on hover
             this.carousel.addEventListener('mouseenter', () => {
                 this.isPaused = true;
             });
@@ -68,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.isPaused = false;
             });
 
-            // Touch events for mobile
             let touchStartX = 0;
             let touchStartY = 0;
             let touchEndX = 0;
@@ -89,23 +84,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 const deltaX = touchEndX - touchStartX;
                 const deltaY = touchEndY - touchStartY;
 
-                // Log for debugging
-                console.log(`Swipe: deltaX=${deltaX}, deltaY=${deltaY}`);
+                console.log(`Carousel Swipe: deltaX=${deltaX}, deltaY=${deltaY}`);
 
-                // Handle horizontal swipes for carousel navigation
                 if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
                     if (deltaX > 0) {
                         this.prev();
                     } else {
                         this.next();
                     }
-                    e.preventDefault(); // Prevent scrolling only for horizontal swipes
+                    e.preventDefault();
                 }
 
                 this.isPaused = false;
             });
 
-            // Keyboard navigation
             this.carousel.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft') {
                     this.prev();
@@ -114,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-            // Make carousel focusable
             this.carousel.setAttribute('tabindex', '0');
         }
 
@@ -152,12 +143,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Initialize carousels
     const carousels = Array.from(document.querySelectorAll('.image-carousel')).map(
         (carousel) => new ImageCarousel(carousel)
     );
 
-    // Lightbox for Images
     document.querySelectorAll('.image-carousel .carousel-item img').forEach(img => {
         img.style.cursor = 'pointer';
         img.addEventListener('click', () => {
@@ -184,14 +173,46 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Lightbox for Videos
     document.querySelectorAll('.image-carousel .carousel-item video').forEach(video => {
         video.style.cursor = 'pointer';
-        // Prevent default touch behavior on videos to allow scrolling
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+
         video.addEventListener('touchstart', (e) => {
-            // Allow touch events to bubble up for carousel handling
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            e.preventDefault(); // Prevent native video behavior
         });
+
+        video.addEventListener('touchmove', (e) => {
+            touchEndX = e.touches[0].clientX;
+            touchEndY = e.touches[0].clientY;
+        });
+
+        video.addEventListener('touchend', (e) => {
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+
+            console.log(`Video Swipe: deltaX=${deltaX}, deltaY=${deltaY}`);
+
+            // Handle horizontal swipes by triggering carousel navigation
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
+                const carousel = video.closest('.image-carousel')._carousel;
+                if (deltaX > 0) {
+                    carousel.prev();
+                } else {
+                    carousel.next();
+                }
+                e.preventDefault();
+            }
+            // Vertical swipes are not prevented, allowing page scrolling
+        });
+
         video.addEventListener('click', (e) => {
+            e.preventDefault();
             const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed;
@@ -214,7 +235,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Auto-hide navbar on scroll (mobile only)
+    // Store carousel instance for access in video touch handlers
+    carousels.forEach(carousel => {
+        carousel.carousel._carousel = carousel;
+    });
+
     let lastScrollTop = 0;
     let isMobile = window.innerWidth <= 992;
 
