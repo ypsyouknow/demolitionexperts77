@@ -171,10 +171,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    document.querySelectorAll('.image-carousel .carousel-item video').forEach(video => {
-        video.style.cursor = 'pointer';
-        video.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent native video controls
+    document.querySelectorAll('.image-carousel .carousel-item .video-wrapper').forEach(wrapper => {
+        wrapper.addEventListener('click', (e) => {
+            e.preventDefault();
+            const src = wrapper.getAttribute('data-src');
             const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed;
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 cursor: zoom-out;
             `;
             modal.innerHTML = `
-                <video src="${video.src}" alt="${video.alt}" style="max-width: 90vw; max-height: 90vh; object-fit: contain;" autoplay loop muted controls></video>
+                <video src="${src}" style="max-width: 90vw; max-height: 90vh; object-fit: contain;" autoplay loop muted controls></video>
             `;
             modal.addEventListener('click', () => modal.remove());
             document.body.appendChild(modal);
