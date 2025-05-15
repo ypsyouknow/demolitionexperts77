@@ -176,37 +176,37 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.image-carousel .carousel-item video').forEach(video => {
         video.style.cursor = 'pointer';
 
-        let touchStartX = 0;
-        let touchStartY = 0;
-        let touchEndX = 0;
-        let touchEndY = 0;
-        let isTap = true;
+        let isTap = false;
+        let touchStartTime = 0;
+        const tapThreshold = 300; // Max time for a tap (ms)
+        const moveThreshold = 10; // Max movement for a tap (px)
 
         video.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
             isTap = true;
+            touchStartTime = Date.now();
+            const touch = e.touches[0];
+            video.dataset.startX = touch.clientX;
+            video.dataset.startY = touch.clientY;
         });
 
         video.addEventListener('touchmove', (e) => {
-            touchEndX = e.touches[0].clientX;
-            touchEndY = e.touches[0].clientY;
-            const deltaX = touchEndX - touchStartX;
-            const deltaY = touchEndY - touchStartY;
-            if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
+            const touch = e.touches[0];
+            const deltaX = touch.clientX - video.dataset.startX;
+            const deltaY = touch.clientY - video.dataset.startY;
+            if (Math.abs(deltaX) > moveThreshold || Math.abs(deltaY) > moveThreshold) {
                 isTap = false;
             }
-            // Allow all swipes to pass through (vertical for scrolling, horizontal ignored)
         });
 
         video.addEventListener('touchend', (e) => {
-            const deltaX = touchEndX - touchStartX;
-            const deltaY = touchEndY - touchStartY;
+            const duration = Date.now() - touchStartTime;
+            const touch = e.changedTouches[0];
+            const deltaX = touch.clientX - video.dataset.startX;
+            const deltaY = touch.clientY - video.dataset.startY;
 
-            console.log(`Video Touch: deltaX=${deltaX}, deltaY=${deltaY}, isTap=${isTap}`);
+            console.log(`Video Touch: deltaX=${deltaX}, deltaY=${deltaY}, duration=${duration}ms, isTap=${isTap}`);
 
-            if (isTap && Math.abs(deltaX) < 10 && Math.abs(deltaY) < 10) {
-                // Handle tap
+            if (isTap && duration < tapThreshold && Math.abs(deltaX) < moveThreshold && Math.abs(deltaY) < moveThreshold) {
                 const modal = document.createElement('div');
                 modal.style.cssText = `
                     position: fixed;
@@ -228,7 +228,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.body.appendChild(modal);
                 e.preventDefault();
             }
-            // No swipe handling; vertical swipes scroll the page
         });
 
         video.addEventListener('click', (e) => {
