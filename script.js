@@ -180,64 +180,60 @@ document.addEventListener('DOMContentLoaded', function () {
         let touchStartY = 0;
         let touchEndX = 0;
         let touchEndY = 0;
+        let isTap = true;
 
         video.addEventListener('touchstart', (e) => {
             touchStartX = e.touches[0].clientX;
             touchStartY = e.touches[0].clientY;
-            e.preventDefault(); // Prevent native video behavior
+            isTap = true;
         });
 
         video.addEventListener('touchmove', (e) => {
             touchEndX = e.touches[0].clientX;
             touchEndY = e.touches[0].clientY;
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+            if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
+                isTap = false;
+            }
+            // Allow all swipes to pass through (vertical for scrolling, horizontal ignored)
         });
 
         video.addEventListener('touchend', (e) => {
             const deltaX = touchEndX - touchStartX;
             const deltaY = touchEndY - touchStartY;
 
-            console.log(`Video Swipe: deltaX=${deltaX}, deltaY=${deltaY}`);
+            console.log(`Video Touch: deltaX=${deltaX}, deltaY=${deltaY}, isTap=${isTap}`);
 
-            // Handle horizontal swipes by triggering carousel navigation
-            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
-                const carousel = video.closest('.image-carousel')._carousel;
-                if (deltaX > 0) {
-                    carousel.prev();
-                } else {
-                    carousel.next();
-                }
+            if (isTap && Math.abs(deltaX) < 10 && Math.abs(deltaY) < 10) {
+                // Handle tap
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.9);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 2000;
+                    cursor: zoom-out;
+                `;
+                modal.innerHTML = `
+                    <video src="${video.src}" alt="${video.alt}" style="max-width: 90vw; max-height: 90vh; object-fit: contain;" autoplay loop muted controls></video>
+                `;
+                modal.addEventListener('click', () => modal.remove());
+                document.body.appendChild(modal);
                 e.preventDefault();
             }
-            // Vertical swipes are not prevented, allowing page scrolling
+            // No swipe handling; vertical swipes scroll the page
         });
 
         video.addEventListener('click', (e) => {
-            e.preventDefault();
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.9);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 2000;
-                cursor: zoom-out;
-            `;
-            modal.innerHTML = `
-                <video src="${video.src}" alt="${video.alt}" style="max-width: 90vw; max-height: 90vh; object-fit: contain;" autoplay loop muted controls></video>
-            `;
-            modal.addEventListener('click', () => modal.remove());
-            document.body.appendChild(modal);
+            e.preventDefault(); // Prevent native video controls
         });
-    });
-
-    // Store carousel instance for access in video touch handlers
-    carousels.forEach(carousel => {
-        carousel.carousel._carousel = carousel;
     });
 
     let lastScrollTop = 0;
