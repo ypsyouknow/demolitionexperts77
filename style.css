@@ -4,7 +4,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: 'Oswald', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-image: url('78c618f3-1cae-4826-9903-774e6fb4bc65.png');
@@ -18,7 +17,6 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
 }
-
 a {
     text-decoration: none;
     color: inherit;
@@ -28,7 +26,6 @@ a {
     align-items: center;
     justify-content: center;
 }
-
 /* Navbar */
 .navbar {
     display: flex;
@@ -44,22 +41,18 @@ a {
     flex-wrap: wrap;
     transition: transform 0.3s ease-in-out;
 }
-
 .navbar-hidden {
     transform: translateY(-100%);
 }
-
 nav .logo {
     display: flex;
     align-items: center;
 }
-
 nav .logo img {
     width: 50px;
     height: 50px;
     margin-right: 15px;
 }
-
 .logo span {
     max-width: 150px;
     white-space: nowrap;
@@ -68,7 +61,6 @@ nav .logo img {
     font-weight: 700;
     color: #FFC107;
 }
-
 .nav-links {
     display: flex;
     list-style: none;
@@ -79,11 +71,9 @@ nav .logo img {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
-
 .nav-links li {
     white-space: nowrap;
 }
-
 nav .nav-links a {
     color: #ffffff;
     padding: 0.75rem 0.5rem;
@@ -93,11 +83,9 @@ nav .nav-links a {
     font-size: 1.1rem;
     text-transform: uppercase;
 }
-
 nav .nav-links a:hover {
     color: #FFC107;
 }
-
 nav .dropdown {
     position: absolute;
     top: 100%;
@@ -114,27 +102,23 @@ nav .dropdown {
     transition: all 0.3s ease;
     border: 1px solid #8B0000;
 }
-
 nav .dropdown li a {
     display: block;
     padding: 0.5rem 1rem;
     color: #ffffff !important;
     transition: all 0.3s ease;
 }
-
 nav .dropdown li a:hover {
     background-color: #8B0000;
     color: #ffffff !important;
     padding-left: 1.2rem;
 }
-
 nav .services-menu:hover .dropdown {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
     transform: translateY(0);
 }
-
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(33, 37, 41, 0.7), rgba(33, 37, 41, 0.7)), url('hero-image.jpg') center/cover no-repeat;
@@ -143,7 +127,6 @@ nav .services-menu:hover .dropdown {
     padding: 4rem 1rem;
     background-color: #6C757D;
 }
-
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -151,12 +134,10 @@ nav .services-menu:hover .dropdown {
     letter-spacing: 2px;
     text-shadow: 2px 2px 4px #000000;
 }
-
 .hero p {
     font-size: 1.2rem;
     color: #FFC107;
 }
-
 /* Sections */
 section {
     padding: 2rem 1rem;
@@ -165,7 +146,6 @@ section {
     width: 100%;
     box-sizing: border-box;
 }
-
 .about-owner, .experience {
     background-color: #1a1a1a;
     margin-bottom: 2rem;
@@ -174,18 +154,15 @@ section {
     box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     border: 1px solid black;
 }
-
 .about-owner h2 {
     color: #8B0000;
 }
-
 .services h2 {
     text-align: center;
     margin-bottom: 2rem;
     color: #FFC107;
     text-transform: uppercase;
 }
-
 /* Service Sections */
 .service-section {
     display: flex;
@@ -201,7 +178,6 @@ section {
     transition: all 0.3s ease;
     border: 1px solid black;
 }
-
 .service-image,
 .service-image-single {
     width: 90%;
@@ -211,7 +187,6 @@ section {
     background: #333333;
     padding: 0;
 }
-
 .image-carousel img,
 .image-carousel video {
     width: 100%;
@@ -222,13 +197,11 @@ section {
     object-fit: contain;
     border: 2px solid #8B0000;
 }
-
 .image-carousel img:hover,
 .image-carousel video:hover {
     transform: scale(1.05);
     border-color: #FFC107;
 }
-
 .service-content {
     flex: 1;
     padding: 1.5rem;
@@ -236,20 +209,17 @@ section {
     flex-direction: column;
     justify-content: center;
 }
-
 .service-content h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     color: #FFC107;
     text-transform: uppercase;
 }
-
 .service-content p {
     margin-bottom: 1.5rem;
     color: #cccccc;
     line-height: 1.7;
 }
-
 .inquire-btn {
     align-self: flex-start;
     padding: 0.8rem 1.5rem;
@@ -264,20 +234,17 @@ section {
     min-width: 44px;
     text-transform: uppercase;
 }
-
 .inquire-btn:hover {
     background-color: #FFC107;
     color: #000000;
     transform: translateY(-2px);
 }
-
 /* Image Carousel */
 .image-carousel {
     position: relative;
     width: 100%;
     overflow: hidden;
 }
-
 .carousel-track {
     display: flex;
     transition: transform 0.5s ease-in-out;
@@ -286,7 +253,6 @@ section {
     touch-action: pan-x;
     user-select: none;
 }
-
 .carousel-item {
     flex: 0 0 100%;
     scroll-snap-align: center;
@@ -295,14 +261,12 @@ section {
     justify-content: center;
     align-items: center;
 }
-
 .carousel-nav {
     display: flex;
     justify-content: center;
     gap: 8px;
     margin-top: 10px;
 }
-
 .carousel-nav .nav-dot {
     width: 10px;
     height: 10px;
@@ -311,11 +275,9 @@ section {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
 .carousel-nav .nav-dot.active {
     background-color: #FFC107;
 }
-
 /* Gallery Section */
 .gallery {
     background-color: #1a1a1a;
@@ -326,18 +288,15 @@ section {
     box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     border: 1px solid black;
 }
-
 .gallery h2 {
     text-align: center;
     margin-bottom: 2.5rem;
     color: #FFC107;
     text-transform: uppercase;
 }
-
 .gallery-category {
     margin-bottom: 3rem;
 }
-
 .gallery-category h3 {
     font-size: 1.5rem;
     color: #FFC107;
@@ -345,7 +304,6 @@ section {
     padding-bottom: 0.5rem;
     border-bottom: 2px solid #8B0000;
 }
-
 .image-carousel .carousel-item img,
 .image-carousel .carousel-item video {
     width: 100%;
@@ -357,7 +315,6 @@ section {
     cursor: pointer;
     border: 2px solid #8B0000;
 }
-
 /* Footer */
 .site-footer {
     background-color: #000000;
@@ -367,7 +324,6 @@ section {
     width: 100%;
     margin-top: 30px;
 }
-
 .footer-container {
     display: flex;
     flex-wrap: wrap;
@@ -377,13 +333,11 @@ section {
     padding: 0 20px;
     gap: 30px;
 }
-
 .footer-logo {
     flex: 1;
     min-width: 250px;
     text-align: center;
 }
-
 .footer-logo img {
     width: 80px;
     height: 80px;
@@ -392,31 +346,26 @@ section {
     background-color: white;
     margin-bottom: 15px;
 }
-
 .footer-logo h3 {
     margin: 10px 0 5px;
     font-size: 24px;
     color: #FFC107;
     font-weight: 600;
 }
-
 .footer-logo p {
     color: #999999;
     font-size: 15px;
 }
-
 .footer-contact {
     flex: 1;
     min-width: 250px;
 }
-
 .footer-contact h4 {
     color: #FFC107;
     font-size: 20px;
     margin-bottom: 15px;
     font-weight: 600;
 }
-
 .footer-contact p {
     margin: 12px 0;
     color: #cccccc;
@@ -425,31 +374,26 @@ section {
     gap: 10px;
     font-size: 15px;
 }
-
 .footer-contact i {
     width: 24px;
     text-align: center;
     color: yellow;
 }
-
 .footer-social {
     flex: 1;
     min-width: 250px;
 }
-
 .footer-social h4 {
     color: #FFC107;
     font-size: 20px;
     margin-bottom: 15px;
     font-weight: 600;
 }
-
 .social-icons {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
 }
-
 .social-icons a {
     display: flex;
     align-items: center;
@@ -462,13 +406,11 @@ section {
     font-size: 20px;
     transition: all 0.3s ease;
 }
-
 .social-icons a:hover {
     background-color: #FFC107;
     color: #000000;
     transform: translateY(-3px);
 }
-
 .footer-bottom {
     text-align: center;
     margin-top: 40px;
@@ -480,7 +422,6 @@ section {
     margin-left: auto;
     margin-right: auto;
 }
-
 /* Responsive Footer */
 @media (max-width: 768px) {
     .footer-container {
@@ -489,23 +430,19 @@ section {
         text-align: center;
         gap: 30px;
     }
-    
     .footer-logo, 
     .footer-contact, 
     .footer-social {
         width: 100%;
         max-width: 350px;
     }
-    
     .footer-contact p {
         justify-content: center;
     }
-    
     .social-icons {
         justify-content: center;
     }
 }
-
 /* Mobile Menu Toggle */
 .mobile-menu-toggle {
     display: none;
@@ -518,7 +455,6 @@ section {
     min-height: 44px;
     min-width: 44px;
 }
-
 /* Responsive Design */
 @media (max-width: 991px) {
     .services-menu .dropdown {
@@ -529,22 +465,18 @@ section {
         display: none;
         padding-left: 1rem;
     }
-    
     .services-menu:hover .dropdown,
     .services-menu:focus-within .dropdown {
         display: block;
     }
 }
-
 @media (max-width: 992px) {
     nav.navbar {
         padding: 0.8rem 1rem;
     }
-    
     .mobile-menu-toggle {
         display: block;
     }
-    
     .nav-links {
         display: none;
         width: 100%;
@@ -552,7 +484,6 @@ section {
         gap: 0.5rem;
         padding: 1rem 0;
     }
-    
     .nav-links.show {
         display: flex;
         flex-direction: column;
@@ -565,22 +496,18 @@ section {
         max-height: calc(100vh - 70px);
         overflow-y: auto;
     }
-    
     .services-menu .dropdown {
         position: static;
         width: 100%;
     }
-    
     nav .logo img {
         width: 40px;
         height: 40px;
     }
-    
     nav .logo span {
         font-size: 1.2rem;
     }
 }
-
 @media (max-width: 599px) {
     .nav-links {
         position: fixed;
@@ -592,60 +519,49 @@ section {
         overflow-y: auto;
         padding-bottom: 20px;
     }
-    
     .hero {
         padding: 3rem 1rem;
     }
-    
     .hero h1 {
         font-size: 1.8rem;
         margin-bottom: 0.5rem;
     }
-    
     .hero p {
         font-size: 1rem;
     }
-    
     .service-section {
         margin: 1rem 0;
     }
-    
     .image-carousel .carousel-item img,
     .image-carousel .carousel-item video {
         max-height: 180px;
         border-radius: 6px;
     }
 }
-
 @media (min-width: 600px) and (max-width: 767px) {
     .service-section {
         flex-direction: row;
     }
 }
-
 @media (min-width: 768px) and (max-width: 991px) {
     .service-section {
         flex-direction: row;
     }
 }
-
 @media (min-width: 769px) {
     .service-section {
         flex-direction: row;
         align-items: center;
     }
-    
     .service-image,
     .service-image-single {
         flex: 1;
         margin-right: 2rem;
     }
-    
     .service-content {
         flex: 1;
     }
 }
-
 @media (max-width: 480px) {
     .service-image,
     .service-image-single {
@@ -653,7 +569,6 @@ section {
         border-radius: 0;
     }
 }
-
 #gallery-section,
 #rcc-breaker, 
 #rcc-wall-cutting, 
@@ -662,15 +577,12 @@ section {
 #slab-cutting {
     scroll-margin-top: 80px;
 }
-
 .about-owner {
     margin-top: 3rem;
 }
-
 html {
     scroll-behavior: smooth;
 }
-
 a, button {
     min-height: 44px;
     min-width: 44px;
@@ -678,7 +590,6 @@ a, button {
     align-items: center;
     justify-content: center;
 }
-
 /* Adjust logo text for mobile */
 @media (max-width: 599px) {
     .logo span {
@@ -688,36 +599,30 @@ a, button {
         overflow: hidden;
         text-overflow: ellipsis;
     }
-
     nav .logo img {
         width: 35px;
         height: 35px;
         margin-right: 10px;
     }
-
     .navbar {
         padding: 0.6rem 0.8rem;
     }
-
     .logo {
         flex: 1;
         max-width: calc(100% - 60px);
     }
 }
-
 /* Ensure logo text is fully visible on slightly larger mobile screens */
 @media (min-width: 600px) and (max-width: 767px) {
     .logo span {
         max-width: 250px;
         font-size: 1.2rem;
     }
-
     nav .logo img {
         width: 40px;
         height: 40px;
     }
 }
-
 /* Gallery Responsive */
 @media (max-width: 599px) {
     .gallery {
@@ -730,7 +635,6 @@ a, button {
         box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         border: 1px solid black;
     }
-
     .gallery .image-carousel .carousel-item img,
     .gallery .image-carousel .carousel-item video {
         max-height: 180px;
@@ -740,24 +644,20 @@ a, button {
         box-shadow: 0 4px 8px rgba(0,0,0,0.5);
         border: 2px solid #8B0000;
     }
-
     .gallery .image-carousel {
         width: 100%;
         max-width: 500px;
         margin: 1rem auto;
         border-radius: 6px;
     }
-
     .gallery-category {
         margin-bottom: 1.5rem;
     }
-
     .gallery-category h3 {
         margin-bottom: 1rem;
         padding-bottom: 0.5rem;
     }
 }
-
 /* Video and carousel touch styles */
 .video-wrapper {
     position: relative;
@@ -765,7 +665,6 @@ a, button {
     max-height: 300px;
     cursor: pointer;
 }
-
 .image-carousel .carousel-item video {
     touch-action: pan-y; /* Prioritize vertical scrolling */
     pointer-events: none; /* Disable direct video interactions */
@@ -776,7 +675,6 @@ a, button {
     -webkit-touch-callout: none;
     controls: none;
 }
-
 .carousel-track {
     touch-action: pan-x; /* Allow carousel swiping */
     user-select: none;
