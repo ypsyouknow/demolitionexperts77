@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.interval = null;
             this.isPaused = false;
 
-            // Hide navigation if only one image
+            // Hide navigation if only one item
             if (this.items.length <= 1) {
                 this.nav.style.display = 'none';
             }
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.items.forEach((_, index) => {
                 const dot = document.createElement('span');
                 dot.className = 'nav-dot';
-                dot.setAttribute('aria-label', `Go to image ${index + 1}`);
+                dot.setAttribute('aria-label', `Go to item ${index + 1}`);
                 if (index === 0) dot.classList.add('active');
                 dot.addEventListener('click', () => this.goTo(index));
                 this.nav.appendChild(dot);
@@ -74,70 +74,35 @@ document.addEventListener('DOMContentLoaded', function () {
             let touchEndX = 0;
             let touchEndY = 0;
 
-            this.track.addEventListener('touchstart', (e) => {
+            this.carousel.addEventListener('touchstart', (e) => {
                 touchStartX = e.touches[0].clientX;
                 touchStartY = e.touches[0].clientY;
                 this.isPaused = true;
             });
 
-            this.track.addEventListener('touchmove', (e) => {
+            this.carousel.addEventListener('touchmove', (e) => {
                 touchEndX = e.touches[0].clientX;
                 touchEndY = e.touches[0].clientY;
             });
 
-            this.track.addEventListener('touchend', (e) => {
+            this.carousel.addEventListener('touchend', (e) => {
                 const deltaX = touchEndX - touchStartX;
                 const deltaY = touchEndY - touchStartY;
 
-                // Determine if the swipe is primarily horizontal or vertical
-                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-                    // Horizontal swipe - navigate carousel
+                // Log for debugging
+                console.log(`Swipe: deltaX=${deltaX}, deltaY=${deltaY}`);
+
+                // Handle horizontal swipes for carousel navigation
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
                     if (deltaX > 0) {
                         this.prev();
                     } else {
                         this.next();
                     }
-                    e.preventDefault(); // Prevent default only for horizontal swipes
+                    e.preventDefault(); // Prevent scrolling only for horizontal swipes
                 }
-                // Vertical swipe - allow default scrolling behavior
+
                 this.isPaused = false;
-            });
-
-            // Handle touch events on videos to allow vertical scrolling
-            this.items.forEach(item => {
-                const video = item.querySelector('video');
-                if (video) {
-                    video.addEventListener('touchstart', (e) => {
-                        touchStartX = e.touches[0].clientX;
-                        touchStartY = e.touches[0].clientY;
-                    });
-
-                    video.addEventListener('touchmove', (e) => {
-                        touchEndX = e.touches[0].clientX;
-                        touchEndY = e.touches[0].clientY;
-                    });
-
-                    video.addEventListener('touchend', (e) => {
-                        const deltaX = touchEndX - touchStartX;
-                        const deltaY = touchEndY - touchStartY;
-
-                        // If primarily vertical swipe, allow default scrolling
-                        if (Math.abs(deltaY) > Math.abs(deltaX) || Math.abs(deltaX) < 50) {
-                            // Do not prevent default, allowing vertical scroll
-                            return;
-                        }
-
-                        // Horizontal swipe - trigger carousel navigation
-                        if (Math.abs(deltaX) > 50) {
-                            if (deltaX > 0) {
-                                this.prev();
-                            } else {
-                                this.next();
-                            }
-                            e.preventDefault();
-                        }
-                    });
-                }
             });
 
             // Keyboard navigation
@@ -154,13 +119,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         startAutoSwipe() {
-            // Only auto-swipe if there are multiple images
             if (this.items.length > 1) {
                 this.interval = setInterval(() => {
                     if (!this.isPaused) {
                         this.next();
                     }
-                }, 5000); // 5 seconds
+                }, 5000);
             }
         }
 
@@ -180,10 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         update() {
-            // Update track position
             this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
-
-            // Update active dot
             const dots = this.nav.querySelectorAll('.nav-dot');
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === this.currentIndex);
@@ -196,10 +157,9 @@ document.addEventListener('DOMContentLoaded', function () {
         (carousel) => new ImageCarousel(carousel)
     );
 
-    // Lightbox Functionality for Gallery
+    // Lightbox for Images
     document.querySelectorAll('.image-carousel .carousel-item img').forEach(img => {
         img.style.cursor = 'pointer';
-
         img.addEventListener('click', () => {
             const modal = document.createElement('div');
             modal.style.cssText = `
@@ -215,16 +175,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 z-index: 2000;
                 cursor: zoom-out;
             `;
-
             modal.innerHTML = `
                 <img src="${img.src}" alt="${img.alt}" 
                      style="max-width: 90vw; max-height: 90vh; object-fit: contain;">
             `;
-
-            modal.addEventListener('click', () => {
-                modal.remove();
-            });
-
+            modal.addEventListener('click', () => modal.remove());
             document.body.appendChild(modal);
         });
     });
@@ -232,8 +187,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Lightbox for Videos
     document.querySelectorAll('.image-carousel .carousel-item video').forEach(video => {
         video.style.cursor = 'pointer';
+        // Prevent default touch behavior on videos to allow scrolling
+        video.addEventListener('touchstart', (e) => {
+            // Allow touch events to bubble up for carousel handling
+        });
         video.addEventListener('click', (e) => {
-            // Only open lightbox on tap, not swipe
             const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed;
@@ -266,14 +224,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('scroll', () => {
         if (!isMobile) return;
-
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
         if (currentScroll <= 100) {
             navbar.classList.remove('navbar-hidden');
             return;
         }
-
         if (currentScroll > lastScrollTop && currentScroll > 100) {
             navbar.classList.add('navbar-hidden');
             document.querySelector('.nav-links').classList.remove('show');
@@ -281,7 +236,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (currentScroll < lastScrollTop) {
             navbar.classList.remove('navbar-hidden');
         }
-
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     });
 });
