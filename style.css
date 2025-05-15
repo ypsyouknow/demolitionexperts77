@@ -217,10 +217,10 @@ section {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     object-fit: contain;
-    border: 2px solid black;
+    border: 2px solid #8B0000;
 }
 
 .image-carousel img:hover,
@@ -343,7 +343,7 @@ section {
     color: #FFC107;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #8B0000;
 }
 
 .image-carousel .carousel-item img,
@@ -355,6 +355,7 @@ section {
     border-radius: 6px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     cursor: pointer;
+    border: 2px solid #8B0000;
 }
 
 /* Footer */
@@ -389,7 +390,6 @@ section {
     border-radius: 50%;
     object-fit: contain;
     background-color: white;
-    padding: 5px;
     margin-bottom: 15px;
 }
 
@@ -501,7 +501,7 @@ section {
         justify-content: center;
     }
     
-    . social-icons {
+    .social-icons {
         justify-content: center;
     }
 }
@@ -613,6 +613,7 @@ section {
     .image-carousel .carousel-item img,
     .image-carousel .carousel-item video {
         max-height: 180px;
+        border-radius: 6px;
     }
 }
 
@@ -734,16 +735,17 @@ a, button {
     .gallery .image-carousel .carousel-item video {
         max-height: 180px;
         width: 100%;
-        border-radius: 0;
+        border-radius: 6px;
         object-fit: contain;
         box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        border: 2px solid #8B0000;
     }
 
     .gallery .image-carousel {
         width: 100%;
         max-width: 500px;
         margin: 1rem auto;
-        border-radius: 0;
+        border-radius: 6px;
     }
 
     .gallery-category {
@@ -756,15 +758,13 @@ a, button {
     }
 }
 
-/* Consolidated video and carousel styles */
+/* Video and carousel touch styles */
 .image-carousel .carousel-item video {
     touch-action: auto;
     pointer-events: auto;
     user-select: none;
     max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    display: block;
+    max-height: 300px; /* Larger for service sections */
 }
 
 .carousel-track {
