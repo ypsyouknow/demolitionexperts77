@@ -760,14 +760,16 @@ a, button {
 
 /* Video and carousel touch styles */
 .image-carousel .carousel-item video {
-    touch-action: auto;
-    pointer-events: auto;
-    user-select: none;
+    touch-action: manipulation; /* Allow scrolling, permit taps */
+    pointer-events: auto; /* Allow clicks for lightbox */
+    user-select: none; /* Prevent text selection */
     max-width: 100%;
     max-height: 300px; /* Larger for service sections */
+    -webkit-user-drag: none; /* Prevent dragging on iOS */
+    controls: none; /* Disable native controls */
 }
 
 .carousel-track {
-    touch-action: pan-x;
+    touch-action: pan-x; /* Allow carousel swiping */
     user-select: none;
 }
