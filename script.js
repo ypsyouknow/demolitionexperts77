@@ -70,24 +70,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Touch events for mobile
             let touchStartX = 0;
+            let touchStartY = 0;
             let touchEndX = 0;
+            let touchEndY = 0;
 
             this.track.addEventListener('touchstart', (e) => {
                 touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
                 this.isPaused = true;
             });
 
             this.track.addEventListener('touchmove', (e) => {
                 touchEndX = e.touches[0].clientX;
+                touchEndY = e.touches[0].clientY;
             });
 
-            this.track.addEventListener('touchend', () => {
+            this.track.addEventListener('touchend', (e) => {
                 const deltaX = touchEndX - touchStartX;
-                if (deltaX > 50) {
-                    this.prev();
-                } else if (deltaX < -50) {
-                    this.next();
+                const deltaY = touchEndY - touchStartY;
+
+                // Determine if the swipe is primarily horizontal or vertical
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                    // Horizontal swipe
+                    if (deltaX > 0) {
+                        this.prev();
+                    } else {
+                        this.prev();
+                    }
                 }
+                // If vertical swipe is dominant, do nothing and let the browser handle scrolling
                 this.isPaused = false;
             });
 
@@ -111,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (!this.isPaused) {
                         this.next();
                     }
-                }, 5000); // Updated to 5000 milliseconds (5 seconds)
+                }, 5000); // 5 seconds
             }
         }
 
@@ -207,5 +218,29 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+});
+document.querySelectorAll('.image-carousel .carousel-item video').forEach(video => {
+    video.style.cursor = 'pointer';
+    video.addEventListener('click', () => {
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            cursor: zoom-out;
+        `;
+        modal.innerHTML = `
+            <video src="${video.src}" alt="${video.alt}" style="max-width: 90vw; max-height: 90vh; object-fit: contain;" autoplay loop muted controls></video>
+        `;
+        modal.addEventListener('click', () => modal.remove());
+        document.body.appendChild(modal);
     });
 });
