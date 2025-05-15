@@ -91,14 +91,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Determine if the swipe is primarily horizontal or vertical
                 if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-                    // Horizontal swipe
+                    // Horizontal swipe - navigate carousel
                     if (deltaX > 0) {
                         this.prev();
                     } else {
-                        this.prev();
+                        this.next();
                     }
+                    e.preventDefault(); // Prevent default only for horizontal swipes
                 }
-                // If vertical swipe is dominant, do nothing and let the browser handle scrolling
+                // Vertical swipe - allow default scrolling behavior
                 this.isPaused = false;
             });
 
@@ -191,6 +192,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Lightbox for Videos
+    document.querySelectorAll('.image-carousel .carousel-item video').forEach(video => {
+        video.style.cursor = 'pointer';
+        video.addEventListener('click', () => {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 2000;
+                cursor: zoom-out;
+            `;
+            modal.innerHTML = `
+                <video src="${video.src}" alt="${video.alt}" style="max-width: 90vw; max-height: 90vh; object-fit: contain;" autoplay loop muted controls></video>
+            `;
+            modal.addEventListener('click', () => modal.remove());
+            document.body.appendChild(modal);
+        });
+    });
+
     // Auto-hide navbar on scroll (mobile only)
     let lastScrollTop = 0;
     let isMobile = window.innerWidth <= 992;
@@ -218,29 +245,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-    });
-});
-document.querySelectorAll('.image-carousel .carousel-item video').forEach(video => {
-    video.style.cursor = 'pointer';
-    video.addEventListener('click', () => {
-        const modal = document.createElement('div');
-        modal.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            cursor: zoom-out;
-        `;
-        modal.innerHTML = `
-            <video src="${video.src}" alt="${video.alt}" style="max-width: 90vw; max-height: 90vh; object-fit: contain;" autoplay loop muted controls></video>
-        `;
-        modal.addEventListener('click', () => modal.remove());
-        document.body.appendChild(modal);
     });
 });
