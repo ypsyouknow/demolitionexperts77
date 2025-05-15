@@ -778,3 +778,7 @@ a, button {
 .image-carousel .carousel-item video {
     touch-action: auto; /* Allow all touch actions on videos */
 }
+
+.image-carousel .carousel-item video {
+    pointer-events: none;
+}
