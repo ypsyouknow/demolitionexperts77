@@ -175,63 +175,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.image-carousel .carousel-item video').forEach(video => {
         video.style.cursor = 'pointer';
-
-        let isTap = false;
-        let touchStartTime = 0;
-        const tapThreshold = 300; // Max time for a tap (ms)
-        const moveThreshold = 10; // Max movement for a tap (px)
-
-        video.addEventListener('touchstart', (e) => {
-            isTap = true;
-            touchStartTime = Date.now();
-            const touch = e.touches[0];
-            video.dataset.startX = touch.clientX;
-            video.dataset.startY = touch.clientY;
-        });
-
-        video.addEventListener('touchmove', (e) => {
-            const touch = e.touches[0];
-            const deltaX = touch.clientX - video.dataset.startX;
-            const deltaY = touch.clientY - video.dataset.startY;
-            if (Math.abs(deltaX) > moveThreshold || Math.abs(deltaY) > moveThreshold) {
-                isTap = false;
-            }
-        });
-
-        video.addEventListener('touchend', (e) => {
-            const duration = Date.now() - touchStartTime;
-            const touch = e.changedTouches[0];
-            const deltaX = touch.clientX - video.dataset.startX;
-            const deltaY = touch.clientY - video.dataset.startY;
-
-            console.log(`Video Touch: deltaX=${deltaX}, deltaY=${deltaY}, duration=${duration}ms, isTap=${isTap}`);
-
-            if (isTap && duration < tapThreshold && Math.abs(deltaX) < moveThreshold && Math.abs(deltaY) < moveThreshold) {
-                const modal = document.createElement('div');
-                modal.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0,0,0,0.9);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    z-index: 2000;
-                    cursor: zoom-out;
-                `;
-                modal.innerHTML = `
-                    <video src="${video.src}" alt="${video.alt}" style="max-width: 90vw; max-height: 90vh; object-fit: contain;" autoplay loop muted controls></video>
-                `;
-                modal.addEventListener('click', () => modal.remove());
-                document.body.appendChild(modal);
-                e.preventDefault();
-            }
-        });
-
         video.addEventListener('click', (e) => {
             e.preventDefault(); // Prevent native video controls
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 2000;
+                cursor: zoom-out;
+            `;
+            modal.innerHTML = `
+                <video src="${video.src}" alt="${video.alt}" style="max-width: 90vw; max-height: 90vh; object-fit: contain;" autoplay loop muted controls></video>
+            `;
+            modal.addEventListener('click', () => modal.remove());
+            document.body.appendChild(modal);
         });
     });
 
