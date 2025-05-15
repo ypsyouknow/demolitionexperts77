@@ -84,8 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 const deltaX = touchEndX - touchStartX;
                 const deltaY = touchEndY - touchStartY;
 
-                console.log(`Carousel Swipe: deltaX=${deltaX}, deltaY=${deltaY}`);
-
                 if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
                     if (deltaX > 0) {
                         this.prev();
