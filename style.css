@@ -759,15 +759,22 @@ a, button {
 }
 
 /* Video and carousel touch styles */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-height: 300px;
+    cursor: pointer;
+}
+
 .image-carousel .carousel-item video {
     touch-action: pan-y; /* Prioritize vertical scrolling */
-    pointer-events: auto; /* Allow taps for lightbox */
-    user-select: none; /* Prevent text selection */
+    pointer-events: none; /* Disable direct video interactions */
+    user-select: none;
     max-width: 100%;
-    max-height: 300px; /* Larger for service sections */
-    -webkit-user-drag: none; /* Prevent dragging on iOS */
-    -webkit-touch-callout: none; /* Disable iOS touch interactions */
-    controls: none; /* Disable native controls */
+    max-height: 300px;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    controls: none;
 }
 
 .carousel-track {
