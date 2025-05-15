@@ -103,6 +103,43 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.isPaused = false;
             });
 
+            // Handle touch events on videos to allow vertical scrolling
+            this.items.forEach(item => {
+                const video = item.querySelector('video');
+                if (video) {
+                    video.addEventListener('touchstart', (e) => {
+                        touchStartX = e.touches[0].clientX;
+                        touchStartY = e.touches[0].clientY;
+                    });
+
+                    video.addEventListener('touchmove', (e) => {
+                        touchEndX = e.touches[0].clientX;
+                        touchEndY = e.touches[0].clientY;
+                    });
+
+                    video.addEventListener('touchend', (e) => {
+                        const deltaX = touchEndX - touchStartX;
+                        const deltaY = touchEndY - touchStartY;
+
+                        // If primarily vertical swipe, allow default scrolling
+                        if (Math.abs(deltaY) > Math.abs(deltaX) || Math.abs(deltaX) < 50) {
+                            // Do not prevent default, allowing vertical scroll
+                            return;
+                        }
+
+                        // Horizontal swipe - trigger carousel navigation
+                        if (Math.abs(deltaX) > 50) {
+                            if (deltaX > 0) {
+                                this.prev();
+                            } else {
+                                this.next();
+                            }
+                            e.preventDefault();
+                        }
+                    });
+                }
+            });
+
             // Keyboard navigation
             this.carousel.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft') {
@@ -195,7 +232,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Lightbox for Videos
     document.querySelectorAll('.image-carousel .carousel-item video').forEach(video => {
         video.style.cursor = 'pointer';
-        video.addEventListener('click', () => {
+        video.addEventListener('click', (e) => {
+            // Only open lightbox on tap, not swipe
             const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed;
