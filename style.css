@@ -12,13 +12,12 @@ body {
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    background-color: #1a1a1a; /* Fallback dark gray */
+    background-color: #1a1a1a;
     color: #ffffff;
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
 }
-
 
 a {
     text-decoration: none;
@@ -36,7 +35,7 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 0.8rem 1.5rem;
-    background-color: #000000; /* Black navbar */
+    background-color: #212529;
     color: #ffffff;
     position: sticky;
     top: 0;
@@ -59,7 +58,6 @@ nav .logo img {
     width: 50px;
     height: 50px;
     margin-right: 15px;
-    /* filter: drop-shadow(0 0 5px #FFC107); Yellow glow for logo */
 }
 
 .logo span {
@@ -68,7 +66,7 @@ nav .logo img {
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 700;
-    color: #FFC107; /* Yellow for brand name */
+    color: #FFC107;
 }
 
 .nav-links {
@@ -97,7 +95,7 @@ nav .nav-links a {
 }
 
 nav .nav-links a:hover {
-    color: #FFC107; /* Yellow hover effect */
+    color: #FFC107;
 }
 
 nav .dropdown {
@@ -105,7 +103,7 @@ nav .dropdown {
     top: 100%;
     left: auto;
     right: 0;
-    background-color: #1a1a1a; /* Darker gray dropdown */
+    background-color: #1a1a1a;
     padding: 0.75rem 0;
     min-width: 220px;
     border-radius: 6px;
@@ -114,7 +112,7 @@ nav .dropdown {
     visibility: hidden;
     transform: translateY(10px);
     transition: all 0.3s ease;
-    border: 1px solid #8B0000; /* Brick red border */
+    border: 1px solid #8B0000;
 }
 
 nav .dropdown li a {
@@ -125,7 +123,7 @@ nav .dropdown li a {
 }
 
 nav .dropdown li a:hover {
-    background-color: #8B0000; /* Brick red hover */
+    background-color: #8B0000;
     color: #ffffff !important;
     padding-left: 1.2rem;
 }
@@ -139,11 +137,11 @@ nav .services-menu:hover .dropdown {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('hero-image.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(33, 37, 41, 0.7), rgba(33, 37, 41, 0.7)), url('hero-image.jpg') center/cover no-repeat;
     color: #ffffff;
     text-align: center;
     padding: 4rem 1rem;
-    background-color: #8B0000; /* Brick red fallback */
+    background-color: #6C757D;
 }
 
 .hero h1 {
@@ -156,7 +154,7 @@ nav .services-menu:hover .dropdown {
 
 .hero p {
     font-size: 1.2rem;
-    color: #FFC107; /* Yellow for emphasis */
+    color: #FFC107;
 }
 
 /* Sections */
@@ -169,22 +167,22 @@ section {
 }
 
 .about-owner, .experience {
-    background-color: #1a1a1a; /* Dark gray sections */
+    background-color: #1a1a1a;
     margin-bottom: 2rem;
     border-radius: 8px;
     padding: 2rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    border: 1px solid black; /* Brick red border */
+    border: 1px solid black;
 }
 
-.about owner h2
-{
+.about-owner h2 {
     color: #8B0000;
 }
+
 .services h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #FFC107; /* Yellow heading */
+    color: #FFC107;
     text-transform: uppercase;
 }
 
@@ -222,13 +220,13 @@ section {
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.5);
     object-fit: contain;
-    border: 2px solid black; /* Brick red border */
+    border: 2px solid black;
 }
 
 .image-carousel img:hover,
 .image-carousel video:hover {
     transform: scale(1.05);
-    border-color: #FFC107; /* Yellow hover */
+    border-color: #FFC107;
 }
 
 .service-content {
@@ -255,7 +253,7 @@ section {
 .inquire-btn {
     align-self: flex-start;
     padding: 0.8rem 1.5rem;
-    background-color: #8B0000; /* Brick red button */
+    background-color: #8B0000;
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -268,7 +266,7 @@ section {
 }
 
 .inquire-btn:hover {
-    background-color: #FFC107; /* Yellow hover */
+    background-color: #FFC107;
     color: #000000;
     transform: translateY(-2px);
 }
@@ -286,6 +284,7 @@ section {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-x;
+    user-select: none;
 }
 
 .carousel-item {
@@ -314,7 +313,7 @@ section {
 }
 
 .carousel-nav .nav-dot.active {
-    background-color: #FFC107; /* Yellow active dot */
+    background-color: #FFC107;
 }
 
 /* Gallery Section */
@@ -344,7 +343,7 @@ section {
     color: #FFC107;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid black; /* Brick red underline */
+    border-bottom: 2px solid black;
 }
 
 .image-carousel .carousel-item img,
@@ -392,7 +391,6 @@ section {
     background-color: white;
     padding: 5px;
     margin-bottom: 15px;
-    /* filter: drop-shadow(0 0 5px #FFC107); */
 }
 
 .footer-logo h3 {
@@ -431,7 +429,7 @@ section {
 .footer-contact i {
     width: 24px;
     text-align: center;
-    color: yellow; /* Brick red icons */
+    color: yellow;
 }
 
 .footer-social {
@@ -503,7 +501,7 @@ section {
         justify-content: center;
     }
     
-    .social-icons {
+    . social-icons {
         justify-content: center;
     }
 }
@@ -719,27 +717,14 @@ a, button {
     }
 }
 
-/* Navbar */
-.navbar {
-    background-color: #212529; /* Dark charcoal gray */
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(rgba(33, 37, 41, 0.7), rgba(33, 37, 41, 0.7)), url('hero-image.jpg') center/cover no-repeat;
-    background-color: #6C757D; /* Warm gray fallback */
-}
-
-@media (max-width: 599px) 
-{
+/* Gallery Responsive */
+@media (max-width: 599px) {
     .gallery {
-        /* Match service-section margins and scroll behavior */
         margin: 1rem 0;
         padding: 1rem;
         padding-top: 30px;
         margin-top: -30px;
         scroll-margin-top: 80px;
-        /* Retain existing border, shadow, and radius */
         border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         border: 1px solid black;
@@ -747,7 +732,6 @@ a, button {
 
     .gallery .image-carousel .carousel-item img,
     .gallery .image-carousel .carousel-item video {
-        /* Match service-section image/video height */
         max-height: 180px;
         width: 100%;
         border-radius: 0;
@@ -756,7 +740,6 @@ a, button {
     }
 
     .gallery .image-carousel {
-        /* Match service-image/service-image-single styling */
         width: 100%;
         max-width: 500px;
         margin: 1rem auto;
@@ -764,42 +747,27 @@ a, button {
     }
 
     .gallery-category {
-        /* Adjust margins to match service-content */
         margin-bottom: 1.5rem;
     }
 
     .gallery-category h3 {
-        /* Match service-content h3 padding/margins */
         margin-bottom: 1rem;
         padding-bottom: 0.5rem;
     }
 }
 
+/* Consolidated video and carousel styles */
 .image-carousel .carousel-item video {
-    touch-action: auto; /* Allow all touch actions on videos */
-}
-
-.image-carousel .carousel-item video {
-    pointer-events: none;
-}
-
-/* Ensure videos allow vertical scrolling */
-.image-carousel .carousel-item video {
-    touch-action: auto; /* Allow all touch actions, including scrolling */
-    pointer-events: auto; /* Ensure taps work for lightbox */
-}
-
-/* Prevent carousel track from blocking vertical scrolling */
-.carousel-track {
-    touch-action: pan-x; /* Keep horizontal panning for carousel */
-    -webkit-user-select: none; /* Prevent text selection on swipe */
+    touch-action: auto;
+    pointer-events: auto;
     user-select: none;
-}
-
-/* Optional: Improve video rendering */
-.image-carousel video {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
     display: block;
+}
+
+.carousel-track {
+    touch-action: pan-x;
+    user-select: none;
 }
