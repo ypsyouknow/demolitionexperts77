@@ -4,7 +4,6 @@ function openWhatsApp(serviceName) {
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
 }
-
 document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.querySelector('.navbar');
     const menuToggle = document.createElement('button');
@@ -12,21 +11,18 @@ document.addEventListener('DOMContentLoaded', function () {
     menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
     menuToggle.setAttribute('aria-label', 'Toggle menu');
     navbar.insertBefore(menuToggle, navbar.querySelector('.nav-links'));
-
     menuToggle.addEventListener('click', function () {
         const navLinks = document.querySelector('.nav-links');
         navLinks.classList.toggle('show');
         this.innerHTML = navLinks.classList.contains('show') ?
             '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
     });
-
     document.addEventListener('click', function (e) {
         if (!navbar.contains(e.target)) {
             document.querySelector('.nav-links').classList.remove('show');
             menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
         }
     });
-
     // Carousel Functionality
     class ImageCarousel {
         constructor(carouselElement) {
@@ -37,14 +33,11 @@ document.addEventListener('DOMContentLoaded', function () {
             this.currentIndex = 0;
             this.interval = null;
             this.isPaused = false;
-
             if (this.items.length <= 1) {
                 this.nav.style.display = 'none';
             }
-
             this.init();
         }
-
         init() {
             this.items.forEach((_, index) => {
                 const dot = document.createElement('span');
@@ -54,36 +47,29 @@ document.addEventListener('DOMContentLoaded', function () {
                 dot.addEventListener('click', () => this.goTo(index));
                 this.nav.appendChild(dot);
             });
-
             this.startAutoSwipe();
-
             this.carousel.addEventListener('mouseenter', () => {
                 this.isPaused = true;
             });
             this.carousel.addEventListener('mouseleave', () => {
                 this.isPaused = false;
             });
-
             let touchStartX = 0;
             let touchStartY = 0;
             let touchEndX = 0;
             let touchEndY = 0;
-
             this.carousel.addEventListener('touchstart', (e) => {
                 touchStartX = e.touches[0].clientX;
                 touchStartY = e.touches[0].clientY;
                 this.isPaused = true;
             });
-
             this.carousel.addEventListener('touchmove', (e) => {
                 touchEndX = e.touches[0].clientX;
                 touchEndY = e.touches[0].clientY;
             });
-
             this.carousel.addEventListener('touchend', (e) => {
                 const deltaX = touchEndX - touchStartX;
                 const deltaY = touchEndY - touchStartY;
-
                 if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
                     if (deltaX > 0) {
                         this.prev();
@@ -92,10 +78,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     e.preventDefault();
                 }
-
                 this.isPaused = false;
             });
-
             this.carousel.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft') {
                     this.prev();
@@ -103,10 +87,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     this.next();
                 }
             });
-
             this.carousel.setAttribute('tabindex', '0');
         }
-
         startAutoSwipe() {
             if (this.items.length > 1) {
                 this.interval = setInterval(() => {
@@ -116,22 +98,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 }, 5000);
             }
         }
-
         goTo(index) {
             this.currentIndex = index;
             this.update();
         }
-
         next() {
             this.currentIndex = (this.currentIndex + 1) % this.items.length;
             this.update();
         }
-
         prev() {
             this.currentIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
             this.update();
         }
-
         update() {
             this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
             const dots = this.nav.querySelectorAll('.nav-dot');
@@ -140,11 +118,9 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
-
     const carousels = Array.from(document.querySelectorAll('.image-carousel')).map(
         (carousel) => new ImageCarousel(carousel)
     );
-
     document.querySelectorAll('.image-carousel .carousel-item img').forEach(img => {
         img.style.cursor = 'pointer';
         img.addEventListener('click', () => {
@@ -170,7 +146,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.appendChild(modal);
         });
     });
-
     document.querySelectorAll('.image-carousel .carousel-item .video-wrapper').forEach(wrapper => {
         wrapper.addEventListener('click', (e) => {
             e.preventDefault();
@@ -196,14 +171,11 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.appendChild(modal);
         });
     });
-
     let lastScrollTop = 0;
     let isMobile = window.innerWidth <= 992;
-
     window.addEventListener('resize', () => {
         isMobile = window.innerWidth <= 992;
     });
-
     window.addEventListener('scroll', () => {
         if (!isMobile) return;
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
