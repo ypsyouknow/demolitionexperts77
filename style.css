@@ -782,3 +782,24 @@ a, button {
 .image-carousel .carousel-item video {
     pointer-events: none;
 }
+
+/* Ensure videos allow vertical scrolling */
+.image-carousel .carousel-item video {
+    touch-action: auto; /* Allow all touch actions, including scrolling */
+    pointer-events: auto; /* Ensure taps work for lightbox */
+}
+
+/* Prevent carousel track from blocking vertical scrolling */
+.carousel-track {
+    touch-action: pan-x; /* Keep horizontal panning for carousel */
+    -webkit-user-select: none; /* Prevent text selection on swipe */
+    user-select: none;
+}
+
+/* Optional: Improve video rendering */
+.image-carousel video {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
